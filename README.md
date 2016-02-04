@@ -1,5 +1,7 @@
 # React + Kemal Chat Example
 
+![Imgur](http://i.imgur.com/1hJIcKo.gif)
+
 Chat app using [React](https://facebook.github.io/react/) + [Kemal](http://kemalcr.com).
 
 This demonstrates how easy it is to build Realtime Web applications with Kemal.
