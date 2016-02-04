@@ -1,3 +1,7 @@
+function random(min, max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
+
 var Chat = React.createClass({
 
   getInitialState: function () {
@@ -11,13 +15,14 @@ var Chat = React.createClass({
     var self = this;
     this.sendable = true;
     var server = new WebSocket("ws://" + location.hostname + ":" + location.port);
-    var user = localStorage.getItem('user') || prompt("What is your name, sir?").replace(/\:|\@/g, "") + "@" + randomColor({luminosity: 'dark'});
+    var user = localStorage.getItem('user') || prompt("What is your name, sir?").replace(/\:|\@/g, "") + "@" + randomColor({luminosity: 'dark'}) + "@" + random(1000, 2000);
     localStorage.setItem('user', user);
     server.onmessage = function (event) {
       var messages = JSON.parse(event.data);
       self.setState({messages: messages});
       window.scrollTo(0, document.body.scrollHeight);
       self.refs.message.focus();
+      new Beep(random(18000, 22050)).play(messages[messages.length - 1].split(":")[0].split('@')[2], 0.05, [Beep.utils.amplify(8000)]);
     };
 
     server.onopen = function () {
@@ -54,13 +59,13 @@ var Chat = React.createClass({
 
   render: function () {
     var messages = this.state.messages.map(function (message) {
-      var parts = message.split(":", 2);
-      var user = parts[0].split("@", 2);
+      var parts = message.split(":");
+      var user = parts[0].split("@");
       var color = user[1];
       var name = user[0];
       return React.createElement("li", null,
         React.createElement('span', {style: {color: color}}, name+": "),
-        React.createElement('span', null, parts[1].trim())
+        React.createElement('span', null, parts.slice(1).join(":").trim())
       );
     });
 
