@@ -1,0 +1,11 @@
+name: kemal-react-chat
+version: 0.1.0
+
+dependencies:
+  kemal:
+    github: sdogruyol/kemal
+
+authors:
+  - Fatih Kadir Akın <fakin@protel.com.tr>
+
+license: MIT

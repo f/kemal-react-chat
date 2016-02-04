@@ -1,0 +1,10 @@
+version: 1.0
+shards:
+  kemal:
+    github: sdogruyol/kemal
+    version: 0.8.0
+
+  radix:
+    github: luislavena/radix
+    version: 0.1.0
+
