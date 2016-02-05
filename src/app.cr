@@ -11,10 +11,19 @@ end
 
 ws "/" do |socket|
   sockets.push socket
+
   socket.on_message do |message|
     messages.push message
     sockets.each do |a_socket|
-      a_socket.send messages.to_json
+      begin
+        a_socket.send messages.to_json
+      rescue ex
+        sockets.delete a_socket
+      end
     end
+  end
+
+  socket.on_close do |socket|
+    sockets.delete socket
   end
 end
