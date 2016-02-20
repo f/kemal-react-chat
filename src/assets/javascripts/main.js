@@ -2,6 +2,20 @@ function random(min, max) {
   return Math.floor(Math.random()*(max-min+1)+min);
 }
 
+function setCurrentTime() {
+  var currentTime = new Date()
+  var hours       = currentTime.getHours()
+  var minutes     = currentTime.getMinutes()
+
+  if (minutes < 10) {
+    minutes = "0" + minutes
+  }
+
+  var timePeriod = hours > 11 ? "PM" : "AM"
+
+  return hours+":"+minutes + " " + timePeriod
+}
+
 var Chat = React.createClass({
 
   getInitialState: function () {
@@ -64,7 +78,7 @@ var Chat = React.createClass({
       var color = user[1];
       var name = user[0];
       return React.createElement("li", null,
-        React.createElement('span', {style: {color: color}}, name+": "),
+        React.createElement('span', {style: {color: color}}, name+"["+setCurrentTime()+"]: "),
         React.createElement('span', null, parts.slice(1).join(":").trim())
       );
     });
