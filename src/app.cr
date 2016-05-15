@@ -27,3 +27,5 @@ ws "/" do |socket|
     sockets.delete socket
   end
 end
+
+Kemal.run

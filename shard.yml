@@ -4,6 +4,7 @@ version: 0.1.0
 dependencies:
   kemal:
     github: sdogruyol/kemal
+    version: 0.12.0
 
 authors:
   - Fatih Kadir Akın <fakin@protel.com.tr>
