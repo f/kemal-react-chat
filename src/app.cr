@@ -18,3 +18,5 @@ ws "/" do |socket|
     end
   end
 end
+
+Kemal.run
